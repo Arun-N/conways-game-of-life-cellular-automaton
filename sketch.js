@@ -5,8 +5,8 @@ let status;
 let neighbors;
 let resolution = 20;
 var frame_rate = 15;
-let slider;
-let DOM_para_speed;
+//let slider;
+//let DOM_para_speed;
 let DOM_para_generations;
 let generation_count = 0;
 var gui;
@@ -21,11 +21,6 @@ function createGrid() {
 	return arr;
 }
 
-// function updateFrameRate() {
-// 	frameRate(slider.value());
-// 	DOM_para_speed.innerHTML = "Simulation Speed = " + slider.value() + " frame/sec";
-// }
-
 function setup() {
 	frameRate(30);
 	createCanvas(800, 800);
@@ -35,13 +30,7 @@ function setup() {
 			grid[i][j] = floor(random(2));
 		}
 	}
-	// slider = createSlider(1, 30, 30);
-	// slider.position(400, 0);
-	// slider.style('width', '100px');
-	// slider.input(updateFrameRate);
-	// DOM_para_speed = document.getElementById("simspeed");
 	DOM_para_generations = document.getElementById("gencount");
-	//DOM_para_speed.innerHTML = "Simulation Speed = " + slider.value() + " frame/sec";
 
 	sliderRange(1, 30, 1);
 	gui = createGui('settings', 900, 100);
@@ -50,16 +39,6 @@ function setup() {
 
 function getNeighborsCount(x, y) {
 	let count=0;
-	// if(x!=0 && x!=cols-1 && y!=0 && y!=rows-1){
-	// 	//count = grid[x][y+1]+grid[x][y-1]+grid[x+1][y]+grid[x-1][y]+grid[x+1][y+1]+grid[x+1][y-1]+grid[x-1][y+1]+grid[x-1][y-1];
-	// 	for(let i=-1; i<=1; i++){
-	// 		for(let j=-1; j<=1; j++){
-	// 			count+=grid[x+i][y+j];
-	// 		}
-	// 	}
-	// 	count = count-grid[x][y];
-	// 	return count;
-	// }
 
 	for(let i=-1; i<=1; i++){
 		for(let j=-1; j<=1; j++){
