@@ -4,11 +4,12 @@ let rows;	//y
 let status;
 let neighbors;
 let resolution = 20;
-let frame_rate = 0;
+var frame_rate = 15;
 let slider;
 let DOM_para_speed;
 let DOM_para_generations;
 let generation_count = 0;
+var gui;
 
 function createGrid() {
 	cols = width/resolution;
@@ -20,10 +21,10 @@ function createGrid() {
 	return arr;
 }
 
-function updateFrameRate() {
-	frameRate(slider.value());
-	DOM_para_speed.innerHTML = "Simulation Speed = " + slider.value() + " frame/sec";
-}
+// function updateFrameRate() {
+// 	frameRate(slider.value());
+// 	DOM_para_speed.innerHTML = "Simulation Speed = " + slider.value() + " frame/sec";
+// }
 
 function setup() {
 	frameRate(30);
@@ -34,14 +35,17 @@ function setup() {
 			grid[i][j] = floor(random(2));
 		}
 	}
-	slider = createSlider(1, 30, 30);
-	slider.position(400, 0);
-	slider.style('width', '100px');
-	slider.input(updateFrameRate);
-	DOM_para_speed = document.getElementById("simspeed");
+	// slider = createSlider(1, 30, 30);
+	// slider.position(400, 0);
+	// slider.style('width', '100px');
+	// slider.input(updateFrameRate);
+	// DOM_para_speed = document.getElementById("simspeed");
 	DOM_para_generations = document.getElementById("gencount");
-	DOM_para_speed.innerHTML = "Simulation Speed = " + slider.value() + " frame/sec";
-	
+	//DOM_para_speed.innerHTML = "Simulation Speed = " + slider.value() + " frame/sec";
+
+	sliderRange(1, 30, 1);
+	gui = createGui('settings', 900, 100);
+	gui.addGlobals('frame_rate');
 }
 
 function getNeighborsCount(x, y) {
@@ -68,6 +72,7 @@ function getNeighborsCount(x, y) {
 
 function draw() {
 	//frame_rate = slider.value();
+	frameRate(frame_rate);
 	DOM_para_generations.innerHTML = "Generation Count = " + generation_count + " generations";
 	for(let i=0; i<cols; i++){
 		for(let j=0; j<rows; j++){
